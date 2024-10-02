@@ -111,13 +111,17 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> with TickerPr
             child: AnimatedOpacity(
               opacity: _isVisible ? 1.0 : 0.0,
               duration: Duration(seconds: 1),
-              child: Text(
-                'Hello, Flutter!',
-                style: TextStyle(
-                  fontSize: 24
+              child: Column(
+                children: [
+                  Text(
+                    'Hello, Flutter!',
+                    style: TextStyle(
+                    fontSize: 24
+                    ),
                   ),
+                  Image.asset("doggie.png"),
+                ],
               ),
-
               curve: Curves.easeInOut,
             ),  
           ),    
