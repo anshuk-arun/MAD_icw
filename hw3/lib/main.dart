@@ -67,9 +67,8 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.lightBlueAccent,
       body: Center(
-        child: Expanded(
           child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
             itemCount: cards.length,
@@ -78,7 +77,6 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
                 child: Text(cards[index]._cardText),
               );
             },
-          ),
         ),
 
       ),
