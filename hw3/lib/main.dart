@@ -41,11 +41,24 @@ class Card {
   }
 
 }
+
+/*
+Card Widget
+if facedown, shows backside
+if faceup shows cardText
+*/
 class _MatchGameScreenState extends State<MatchGameScreen> {
  
   List<Card> cards = [
-    Card("Hello"),
-    Card("World"),
+    Card("A"),
+    Card("B"),
+    Card("A"),
+    Card("B"),
+    Card("A"),
+    Card("B"),
+    Card("A"),
+    Card("B"),
+    
   ];
 
 
@@ -63,6 +76,32 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
     });
   }
 
+  Widget showCardImage(int index){
+    // FaceDown
+    if (!cards[index]._isFaceUp){
+      return Image(image: AssetImage('assets/images/purple-card-back.jpg'));
+    }
+    // FaceUp
+    else{
+      return Container(
+        // Front of Card Image
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          image: DecorationImage(
+            image: AssetImage('assets/images/grey-card-full.jpg'),
+            fit: BoxFit.contain,
+          ),
+        ),
+        // Card Text
+        child: Center(
+          child: Text(cards[index]._cardText),
+        ),
+      );
+      //return Image(image: AssetImage('assets/images/grey-card-full.jpg'));
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -74,7 +113,14 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
             itemCount: cards.length,
             itemBuilder: (context, index){
               return GridTile(
-                child: Text(cards[index]._cardText),
+                // child: Text(cards[index]._cardText),
+                child: GestureDetector(
+                  child: showCardImage(index),
+                  onTap: (){
+                    flipCard(index);
+                  },
+                )
+                
               );
             },
         ),
