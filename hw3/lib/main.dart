@@ -4,6 +4,7 @@ void main() {
   runApp(const MatchGame());
 }
 
+// Root MatchGame
 class MatchGame extends StatelessWidget {
   const MatchGame({super.key});
 
@@ -22,6 +23,7 @@ class MatchGame extends StatelessWidget {
   }
 }
 
+// MatchGameScreen
 class MatchGameScreen extends StatefulWidget {
   const MatchGameScreen({super.key});
 
@@ -29,17 +31,16 @@ class MatchGameScreen extends StatefulWidget {
   State<MatchGameScreen> createState() => _MatchGameScreenState();
 }
 
+// Card Class
 class Card {
   final Image _backDesign = Image.asset("purple-card-back.jpg");
   late String _cardText;
   late bool _isFaceDown;
-  //late bool _isMatched;
-
+  
   Card (String cardText){
     _backDesign;
     _cardText = cardText;
     _isFaceDown = true;
-    //_isMatched = false;
   }
 
   // Compare Two Cards together for if their cardTexts match
@@ -54,11 +55,7 @@ class Card {
 
 }
 
-/*
-Card Widget
-if facedown, shows backside
-if faceup shows cardText
-*/
+// Match Game Build and running
 class _MatchGameScreenState extends State<MatchGameScreen> {
  
   List<Card> cards = [
@@ -102,9 +99,6 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
         
         // add card to possible matches
         matches.add(cards[index]);
-        
-        // Check Match
-        checkMatch();
       }
       // Face UP Cards are not allowed to flip manually
     });
@@ -137,12 +131,6 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
     });
   }
 
-  // // delete from cards list
-  // void deleteCard(int index){
-  //   setState(() {
-  //     cards.removeAt(index);
-  //   });
-  // }
 
   // Displays either back of Card or front of Card
   Widget showCardImage(int index){
@@ -152,7 +140,9 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
     }
     // FaceUp
     else{
-      return Container(
+      return AnimatedContainer(
+        duration: const Duration(seconds: 2),
+        curve: Curves.linear,
         // Front of Card Image
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
@@ -205,18 +195,20 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
                           // when a card is clicked, if it is facedown, it'll be flippedFaceUp
                           // then it'll be checked if matches
                           flipCardFaceUp(index);
-                          // // Then Check if current card matches with another flippedFaceUpCard
-                          // checkMatch();                         
+                          // then check if current card matches the other flippedFaceUpCard
+                          checkMatch();
                         });
                       },
                       child: showCardImage(index),
                     )
-                    
                   );
+                
                 },
               ),
+
             ),
           ),
+        
         ],
       ),
     );
