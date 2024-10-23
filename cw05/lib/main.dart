@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,13 +32,18 @@ class AquariumHome extends StatefulWidget {
   State<AquariumHome> createState() => _AquariumState();
 }
 
-// // Fish Class
-// Fish {
-//   FishColor fc;
-//   double swimspeed;
+// Fish Class
+class Fish {
+  Offset position;
+  FishColor fishColor;
+  bool direction;
 
-//   Fish({this.fc, this.swimspeed});
-// }
+
+
+
+  
+  Fish({this.position = const Offset(100, 100), required this.fishColor, this.direction = true});
+}
 
 // Color of the Fish
 enum FishColor {
@@ -55,13 +62,48 @@ enum FishColor {
 
 class _AquariumState extends State<AquariumHome> {
 
-  List<String> fishies = [];
+  List<Fish> fishies = [];
+  List<Widget> fishWidgets = <Widget>[];
   double _swimSliderValue = 2;
   final TextEditingController _fishColorController = TextEditingController();
   FishColor? selectedFishColor;
 
-  void _addFish(){
+  // AnimationController _controller;
+  // @override
+  // void initState() {
+  // _controller = AnimationController(duration: const Duration(seconds: 2), vsync: this);
+  // // Add your animation logic here.
+  // super.initState();
+  // }
 
+  // Add a new Fish with random color and direction
+  void _addFish(){
+    setState(() {
+      var addfishX = Random().nextDouble() * 100;
+      var addfishY = Random().nextDouble() * 100;
+      fishies.add(Fish(position: Offset(addfishX, addfishY), fishColor: _randomFishColor(), direction: Random().nextBool()));
+    });
+  }
+
+  // Helper Function for _addFish()
+  // Random Fish Color
+  FishColor _randomFishColor(){
+
+    var rand = Random().nextInt(5);
+    switch (rand) {
+      case 0:
+        return FishColor.blue;
+      case 1:
+        return FishColor.red;
+      case 2:
+        return FishColor.green;
+      case 3:
+        return FishColor.orange;
+      case 4:
+        return FishColor.black;
+      default:
+        return FishColor.orange;
+    }
   }
 
   void _saveSettings(){
@@ -70,6 +112,10 @@ class _AquariumState extends State<AquariumHome> {
 
   @override
   Widget build(BuildContext context) {
+
+    // // Initial Fish
+    // _addFish();
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -92,13 +138,31 @@ class _AquariumState extends State<AquariumHome> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
+            
             // Aquarium Box
             Container(
               width: 300,
               height: 300,
               color: Colors.lightBlueAccent,
+              //Fishies
+              // Each Fish into the aquarium
+              child: ListView(
+                children: [
+                  for (Fish f in fishies) 
+                    (Positioned(
+                      left: f.position.dx,
+                      top: f.position.dy,
+                      child: Transform.flip(
+                        flipX: f.direction,
+                        child: Container(
+                          constraints: const BoxConstraints(maxWidth: 20, maxHeight: 10),
+                          width: 20,
+                          height: 10,
+                          color: f.fishColor.color),)))
+                ],
+              ),
             ),
+
             // First Row of Buttons: AddFish, SaveSettings
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
