@@ -11,13 +11,13 @@ class TaskListApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CW4 - List of Tasks, CRUD',
+      title: 'CW6 - Firebase List of Tasks, CRUD',
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: TaskListScreen(title: 'CW4 - List of Tasks, CRUD'),
+      home: TaskListScreen(title: 'CW6 - List of Tasks, CRUD'),
     );
   }
 }
