@@ -1,5 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+
+/*
+  Current working on:
+  Implement Firebase for State Management
+  - Integrate Firebase for Backend data storage
+  - firebase is updated in realtime as use the app
+  - implement firbase auth to secure app and identify users
+*/
 void main() {
   runApp(const TaskListApp());
 }
@@ -55,6 +64,10 @@ class Task {
 
 class _TaskListScreenState extends State<TaskListScreen>{
 
+
+  // Firestore Database
+  final db = FirebaseFirestore.instance;
+
   // List to hold all the Tasks
   List<Task> _tasks = [];
   // text controller for textfield
@@ -67,7 +80,14 @@ class _TaskListScreenState extends State<TaskListScreen>{
   void addTask(){
     setState(() {
       // the new task has the name of what's in the textField
-      _tasks.add(Task(name: _controller.text, completionStatus: false));    
+      _tasks.add(Task(name: _controller.text, completionStatus: false));
+
+      // Firebase add
+      final taskData = {
+        "name" : _controller.text,
+        "completionStatus": false,
+      };
+      db.collection("_db-tasks").doc("Tasks").set(taskData).onError((e, _) => print("error writing document: $e"));    
     });
   }
 
