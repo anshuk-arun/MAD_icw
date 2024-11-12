@@ -58,5 +58,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '513600084540',
     projectId: 'mad-cloud-messaging',
     storageBucket: 'mad-cloud-messaging.firebasestorage.app',
+    iosBundleId: 'com.example.icw14',
   );
 }
