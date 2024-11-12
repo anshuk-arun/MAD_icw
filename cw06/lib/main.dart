@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 
 /*
   Current working on:
@@ -9,7 +9,11 @@ import 'package:flutter/material.dart';
   - firebase is updated in realtime as use the app
   - implement firbase auth to secure app and identify users
 */
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
   runApp(const TaskListApp());
 }
 
@@ -58,6 +62,11 @@ class Task {
     this.completionStatus = false,
   });
 
+  // final taskDate = {
+  //   "name" : "",
+  //   "completionStatus" : false,
+  // };
+
   String name;
   bool completionStatus;
 }
@@ -75,7 +84,7 @@ class _TaskListScreenState extends State<TaskListScreen>{
 
   String fieldInput = "";
 
-
+  
   // Add a new Task
   void addTask(){
     setState(() {
@@ -87,7 +96,8 @@ class _TaskListScreenState extends State<TaskListScreen>{
         "name" : _controller.text,
         "completionStatus": false,
       };
-      db.collection("_db-tasks").doc("Tasks").set(taskData).onError((e, _) => print("error writing document: $e"));    
+      db.collection("_db-tasks").doc(_controller.text).set(taskData);
+      //db.collection("_db-tasks").doc("Tasks").set(taskData).onError((e, _) => print("error writing document: $e"));    
     });
   }
 
@@ -103,6 +113,17 @@ class _TaskListScreenState extends State<TaskListScreen>{
     setState(() {
       // toggle the completion / not completion of a task
       _tasks.elementAt(index).completionStatus = !(_tasks.elementAt(index).completionStatus);
+
+      // bool csBool;
+      // // update the completion status
+      // final statusRef = db.collection("_db-tasks").doc(_tasks.elementAt(index).name);
+      // statusRef.get().then(
+      //   (DocumentSnapshot doc) {
+      //     final data = doc.data() as Map<String, bool>;
+
+      //   }
+      // )
+      // csInstance.update({"completionStatus": csInstance.get()})
     });
   }
 
