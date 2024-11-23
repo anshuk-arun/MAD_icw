@@ -7,6 +7,8 @@ void main() {
 
 // Says this is the root.
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Comes from the Import
@@ -83,7 +85,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           'Tabs Demo',
         ),
         bottom: TabBar(

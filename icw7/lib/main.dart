@@ -5,6 +5,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   
   // MyApp({super.key, required this.controller}) :
   
@@ -61,6 +63,8 @@ class MyApp extends StatelessWidget {
 }
 
 class FadingTextAnimation extends StatefulWidget {
+  const FadingTextAnimation({super.key});
+
   @override
   _FadingTextAnimationState createState() => _FadingTextAnimationState();
 }
@@ -102,7 +106,7 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> with TickerPr
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fading Text Animation'),
+        title: const Text('Fading Text Animation'),
       ),
       body: Center(
         child: Container(
@@ -110,7 +114,8 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> with TickerPr
             onTap: toggleVisibility,
             child: AnimatedOpacity(
               opacity: _isVisible ? 1.0 : 0.0,
-              duration: Duration(seconds: 1),
+              duration: const Duration(seconds: 1),
+              curve: Curves.easeInOut,
               child: Column(
                 children: [
                   Text(
@@ -122,7 +127,6 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> with TickerPr
                   Image.asset("doggie.png"),
                 ],
               ),
-              curve: Curves.easeInOut,
             ),  
           ),    
         ),
@@ -142,7 +146,7 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> with TickerPr
       
       floatingActionButton: FloatingActionButton(
         onPressed: toggleVisibility,
-        child: Icon(Icons.play_arrow),
+        child: const Icon(Icons.play_arrow),
       ),
     );
   }
