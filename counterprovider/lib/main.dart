@@ -112,20 +112,20 @@ class MyHomePage extends StatelessWidget {
                 var counter = context.read<Counter>();
                 counter.increment();
               },
-              child: const Text('Increase Age'),
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 overlayColor: WidgetStatePropertyAll<Color>(Color.fromRGBO(58, 103, 240, 0.4))
               ),
+              child: const Text('Increase Age'),
             ),
             ElevatedButton(
               onPressed: (){
                 var counter = context.read<Counter>();
                 counter.decrement();
               },
-              child: const Text('Decrease Age'),
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 overlayColor:  WidgetStatePropertyAll<Color>(Color.fromRGBO(124, 188, 247, 0.4)) //    Color.fromRGBO(124, 188, 247, 1.0)
               ),
+              child: const Text('Decrease Age'),
             ),
           ],
         ),

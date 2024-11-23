@@ -18,7 +18,7 @@ class MatchGame extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
         useMaterial3: true,
       ),
-      home: MatchGameScreen(),
+      home: const MatchGameScreen(),
     );
   }
 }
@@ -45,7 +45,7 @@ class Card {
 
   // Compare Two Cards together for if their cardTexts match
   bool equalsCard(Card c){
-    if (this._cardText == c._cardText){
+    if (_cardText == c._cardText){
       return true;
     }
     else{
@@ -136,7 +136,7 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
   Widget showCardImage(int index){
     // FaceDown
     if (cards[index]._isFaceDown){
-      return Image(image: AssetImage('assets/images/purple-card-back.jpg'));
+      return const Image(image: AssetImage('assets/images/purple-card-back.jpg'));
     }
     // FaceUp
     else{
@@ -146,7 +146,7 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
         // Front of Card Image
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage('assets/images/grey-card-full.jpg'),
             fit: BoxFit.contain,
           ),
@@ -166,7 +166,7 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
     return Scaffold(
       // App Bar that gives title of app
       appBar: AppBar(
-        title: Text('Matching Game'),
+        title: const Text('Matching Game'),
         backgroundColor: Colors.blueGrey,
       ),
       backgroundColor: Colors.lightBlueAccent,
@@ -176,7 +176,7 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
         children: [
           // Score Display
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             color: Colors.blue,
             child: Text('$score'),
           ),
@@ -185,7 +185,7 @@ class _MatchGameScreenState extends State<MatchGameScreen> {
             child: SizedBox(
               height: 500,
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
                 itemCount: cards.length,
                 itemBuilder: (context, index){
                   return GridTile(

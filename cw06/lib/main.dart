@@ -38,7 +38,7 @@ class TaskListApp extends StatelessWidget {
 // Stateful Widget to manage the state of the Task List
 class TaskListScreen extends StatefulWidget {
 
-  TaskListScreen({
+  const TaskListScreen({
     super.key,
     required this.title,
     this.color = Colors.lightGreenAccent,
@@ -78,9 +78,9 @@ class _TaskListScreenState extends State<TaskListScreen>{
   final db = FirebaseFirestore.instance;
 
   // List to hold all the Tasks
-  List<Task> _tasks = [];
+  final List<Task> _tasks = [];
   // text controller for textfield
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   String fieldInput = "";
 
@@ -152,7 +152,7 @@ class _TaskListScreenState extends State<TaskListScreen>{
               child: TextField(
                 // The textField is managed by the TextEditingController
                 controller: _controller,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Task Name",
                 ),

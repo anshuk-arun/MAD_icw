@@ -10,7 +10,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(RunMyApp());
+  runApp(const RunMyApp());
 }
 
 class RunMyApp extends StatefulWidget {
@@ -26,30 +26,30 @@ class ThemeClass {
   static ThemeData darkTheme = ThemeData();
 
   static ThemeData pastelTheme = ThemeData(
-    scaffoldBackgroundColor: Color.fromRGBO(254, 250, 224, 1.000), //Color: Cornsilk for ScaffoldBackground
+    scaffoldBackgroundColor: const Color.fromRGBO(254, 250, 224, 1.000), //Color: Cornsilk for ScaffoldBackground
     //primaryColor: Color.fromRGBO(250, 237, 205, 1.000),
     //secondaryHeaderColor: Colors.black,
     textTheme: Typography.blackCupertino,
     //shadowColor: Color.fromRGBO(204, 213 , 174, 1.000),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        foregroundColor: Color.fromRGBO(212, 164, 115, 1.000), //Color: Buff for Text
-        backgroundColor: Color.fromRGBO(250, 237, 205, 1.000)  //Color: Papya Whip for button
+        foregroundColor: const Color.fromRGBO(212, 164, 115, 1.000), //Color: Buff for Text
+        backgroundColor: const Color.fromRGBO(250, 237, 205, 1.000)  //Color: Papya Whip for button
       )
     )
   );
   
 
   static ThemeData purpleTheme = ThemeData(
-    scaffoldBackgroundColor:Color.fromRGBO(134, 97, 193, 1), // Amethyst for Scaffold
+    scaffoldBackgroundColor:const Color.fromRGBO(134, 97, 193, 1), // Amethyst for Scaffold
     //primaryColor: Color.fromRGBO(202, 156, 225, 1.000),
     //secondaryHeaderColor: Colors.white,
     textTheme: Typography.whiteCupertino,
     //shadowColor: Color.fromRGBO(129, 0, 129, 1.000)
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        foregroundColor: Color.fromRGBO(129, 0, 129, 1), // Purple for Text
-        backgroundColor: Color.fromRGBO(203, 156, 242, 1) //Color: Wisteria for Button Background
+        foregroundColor: const Color.fromRGBO(129, 0, 129, 1), // Purple for Text
+        backgroundColor: const Color.fromRGBO(203, 156, 242, 1) //Color: Wisteria for Button Background
       )
     ) 
   );
@@ -86,7 +86,7 @@ class _RunMyAppState extends State<RunMyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Class Act 02 - AnshukArun '),
+          title: const Text('Class Act 02 - AnshukArun '),
         ),
         body: Center(
           child: Column(
@@ -102,12 +102,12 @@ class _RunMyAppState extends State<RunMyApp> {
                       onPressed: () {
                         changeTheme(ThemeMode.light); //Pastel
                       },
-                      child: Text('Pastel Mode')),
+                      child: const Text('Pastel Mode')),
                   ElevatedButton(
                       onPressed: () {
                         changeTheme(ThemeMode.dark);  //Purple
                       },
-                      child: Text('Purple Mode')),
+                      child: const Text('Purple Mode')),
                 ],
                 // Create two buttons here and change the theme when the button is pressed. use children[] and create two button inside it.
               ),
@@ -119,7 +119,7 @@ class _RunMyAppState extends State<RunMyApp> {
                       changeTheme(ThemeMode.system);
         
                     },
-                    child: Text('System Mode'))
+                    child: const Text('System Mode'))
                 ],
                 // Create a third button here, below the previous two buttons, and change the theme to a Purple mode when button is pressed.
               )

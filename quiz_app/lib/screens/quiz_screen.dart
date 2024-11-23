@@ -3,6 +3,8 @@ import '../models/question.dart';
 import '../services/api_service.dart';
 
 class QuizScreen extends StatefulWidget {
+  const QuizScreen({super.key});
+
   @override
   _QuizScreenState createState() => _QuizScreenState();
 }
@@ -60,8 +62,8 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget _buildOptionButton(String option) {
     return ElevatedButton(
       onPressed: _answered ? null : () => _submitAnswer(option),
-      child: Text(option),
       style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+      child: Text(option),
     );
   }
 

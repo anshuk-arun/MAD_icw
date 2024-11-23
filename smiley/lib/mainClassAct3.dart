@@ -5,6 +5,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,6 +16,8 @@ class MyApp extends StatelessWidget {
 }
 
 class DrawingApp extends StatefulWidget {
+  const DrawingApp({super.key});
+
   @override
   _DrawingAppState createState() => _DrawingAppState();
 }
@@ -25,7 +29,7 @@ class _DrawingAppState extends State<DrawingApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Drawing App'),
+        title: const Text('Drawing App'),
       ),
       body: GestureDetector(
         onPanUpdate: (details) {
@@ -57,7 +61,7 @@ class _DrawingAppState extends State<DrawingApp> {
             lines.clear();
           });
         },
-        child: Icon(Icons.clear),
+        child: const Icon(Icons.clear),
       ),
     );
   }
@@ -105,9 +109,9 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.fill
       ..color = Colors.yellow;
     Path path = Path();
-    path.addOval(Rect.fromCircle(center: Offset(200, 250), radius: 100));
+    path.addOval(Rect.fromCircle(center: const Offset(200, 250), radius: 100));
     canvas.drawPath(path, paintFace);
-    path..reset();
+    path.reset();
 
     Paint paintFeatures = Paint()
       ..style = PaintingStyle.fill
