@@ -30,11 +30,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_core: ^3.7.0
+  cloud_firestore: ^5.4.5
+
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+
+  # The following adds Google ML Kit specific packages needed for this application.
+  google_mlkit_image_labeling: ^0.13.0
+  google_mlkit_object_detection: ^0.14.0
 
 dev_dependencies:
   flutter_test:
