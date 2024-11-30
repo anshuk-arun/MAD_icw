@@ -146,9 +146,9 @@ class _SelectScreenState extends State<SelectScreen> {
             ),
             ElevatedButton(
               onPressed: (){
-                setState(() {
-                  QuizScreen();
-                });
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const QuizScreen()),
+                );
               }, 
               child: const Text("Go to Default Quiz")
             ),
