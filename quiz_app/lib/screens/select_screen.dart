@@ -25,7 +25,7 @@ enum ColorLabel {
 
 // DropdownMenuEntry labels and values
 enum NumQsLabel {
-  five('5', 5),
+  five('5', 5), 
   ten('10', 10),
   fifteen('15', 15);
 
