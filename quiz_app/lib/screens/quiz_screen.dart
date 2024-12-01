@@ -3,8 +3,9 @@ import '../models/question.dart';
 import '../services/api_service.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({super.key, this.numQuestions=10});
 
+  final int numQuestions;
   @override
   _QuizScreenState createState() => _QuizScreenState();
 }
