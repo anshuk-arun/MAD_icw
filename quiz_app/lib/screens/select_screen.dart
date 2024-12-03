@@ -152,6 +152,7 @@ class _SelectScreenState extends State<SelectScreen> {
               }, 
               child: const Text("Go to Default Quiz")
             ),
+            Text("${ApiService.getCategories()}"),
             // SizedBox(height: 16),
             // Text(
             //   question.question,
