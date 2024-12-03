@@ -9,7 +9,7 @@ class ApiService {
   // If the api call was over 24 hours ago, use a new api call. Else, use the stored categories. optional parameter (-f) to force fetch
 
 
-  static Future<List<Question>> fetchQuestions({int amount = 15, int category = 9, String difficulty = "easy", String type = "multiple"}) async {
+  static Future<List<Question>> fetchQuestions({int amount = 10, int category = 9, String difficulty = "easy", String type = "multiple"}) async {
     final response = await http.get(
       Uri.parse(
           'https://opentdb.com/api.php?amount=$amount&category=$category&difficulty=$difficulty&type=$type'),

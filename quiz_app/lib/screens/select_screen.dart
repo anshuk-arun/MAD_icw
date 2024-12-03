@@ -34,12 +34,50 @@ enum NumQsLabel {
   final int num;
 }
 
+enum CategoryLabel{
+
+  nullCat(-1, "nullCategory");
+
+  const CategoryLabel(this.id, this.label);
+  final int id;
+  final String label;
+}
+
+enum DifficultyLabel{
+
+  easy(1, "easy"),
+  medium(2, "medium"),
+  hard(3, "hard");
+
+  const DifficultyLabel(this.diffID, this.label);
+  final int diffID;
+  final String label;
+}
+
+enum TypeLabel{
+
+  essaytype("nullEssay", "nullType");
+
+  const TypeLabel(this.typeID, this.label);
+  final String typeID;
+  final String label;
+}
+
 
 class _SelectScreenState extends State<SelectScreen> {
   final TextEditingController colorController = TextEditingController();
   final TextEditingController numQscontroller = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
+  final TextEditingController difficultyController = TextEditingController();
+  final TextEditingController typeController = TextEditingController();
+
+  final TextEditingController ddmenuController = TextEditingController();
+
   ColorLabel? selectedColor;
   NumQsLabel? selectedNumQs;
+  CategoryLabel? selectedCategory;
+  DifficultyLabel? selectedDifficulty;
+  TypeLabel? selectedType;
 
   // The Number of Questions in the Quiz. (i.e 5, 10, 15)
   int _selectNumQs = 0;
@@ -140,6 +178,50 @@ class _SelectScreenState extends State<SelectScreen> {
                   enabled: color.label != 'Grey',
                   style: MenuItemButton.styleFrom(
                     foregroundColor: color.color,
+                  ),
+                );
+              }).toList(),
+            ),
+            DropdownMenu<CategoryLabel>(
+              initialSelection: CategoryLabel.nullCat,
+              controller: categoryController,
+              requestFocusOnTap: true,
+              label: const Text('Select Category'),
+              onSelected: (CategoryLabel? category){
+                setState(() {
+                  selectedCategory = category;
+                });
+              },
+              dropdownMenuEntries: CategoryLabel.values
+                  .map<DropdownMenuEntry<CategoryLabel>>(
+                      (CategoryLabel category){
+                  return DropdownMenuEntry<CategoryLabel>(
+                    value: category,
+                    label: category.label,
+                    enabled: category.label != 'uwu',
+                    style: MenuItemButton.styleFrom(foregroundColor: Colors.blue,
+                  ),
+                );
+              }).toList(),
+            ),
+            DropdownMenu<DifficultyLabel>(
+              initialSelection: DifficultyLabel.easy,
+              controller: difficultyController,
+              requestFocusOnTap: true,
+              label: const Text('Select Difficulty'),
+              onSelected: (DifficultyLabel? diff){
+                setState(() {
+                  selectedDifficulty = diff;
+                });
+              },
+              dropdownMenuEntries: DifficultyLabel.values
+                  .map<DropdownMenuEntry<DifficultyLabel>>(
+                      (DifficultyLabel diff){
+                  return DropdownMenuEntry<DifficultyLabel>(
+                    value: diff,
+                    label: diff.label,
+                    enabled: diff.label != 'uwu',
+                    style: MenuItemButton.styleFrom(foregroundColor: Colors.blue,
                   ),
                 );
               }).toList(),
